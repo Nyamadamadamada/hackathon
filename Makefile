@@ -1,0 +1,5 @@
+firebase-tools install
+FirebaseのCLIをインストールしていない方はここでインストールします。
+firebase-toolsはコマンドラインでFirebaseにデプロイしたり等、様々な操作ができるCLIです。
+
+npm install -g firebase-tools
