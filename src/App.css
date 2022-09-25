@@ -1,41 +1,209 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100vw;
+}
+.hero {
+  padding: 50px 0;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #61dafb;
+  background-image: linear-gradient(180deg, #61dafb 47%, #ffcb31 100%);
+  color: #fff;
+}
+.ttl {
+  width: 100%;
+  white-space: nowrap;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* モーダル */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1060;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* 画面の中央に要素を表示させる設定 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  opacity: 0;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.4s;
+}
+/* フォーム */
+.form-label {
+  font-weight: bold;
+}
+.form-check-inline {
+  margin-right: 2rem;
+}
+.form-control.textarea {
+  height: 100px;
+}
+.form_img_preview {
+  width: 100%;
+  max-width: 300px;
+}
+
+/* イベント内容 */
+.recomend ul,
+.self-introduction ul {
+  list-style: disc;
+}
+.self-introduction li {
+  font-size: 14px;
+}
+/* タイムテーブル */
+.timetable {
+  font-size: 14px;
+  width: 100%;
+}
+.timetable .btn {
+  font-size: 14px;
+}
+/* TOPページ 参加者 */
+.user-info img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+/* 参加者情報 */
+.content-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+.content-num {
+  font-size: 14px;
+}
+.content-sort {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+/* 参加者検索 */
+.search-user {
+  font-size: 14px;
+}
+/* 参加者一覧 */
+.interest-tag img {
+  width: 13px;
+  height: 13px;
+  margin-right: 4px;
+  margin-bottom: 3px;
+}
+.interest-tag ul {
+  padding: 0;
+}
+.interest-tag li {
+  font-size: 14px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media only screen and (min-width: 992px) {
+  .hero {
+    height: 20vh;
+    padding-top: 6vh;
+  }
+  .hero-inner {
+    height: 100%;
+  }
+  .hero .ttl {
+    text-align: left;
+  }
+  .flex-swiper {
+    width: 60vw;
+    margin: 0;
+  }
+  .hero__slider-item-img {
+    height: 40vh;
+  }
+  .hero__slider-item-info {
+    width: 28vh;
+    height: 14vh;
+  }
+  .hero__slider-item-info-text {
+    height: 7vh;
+  }
+  .swiper-slide img {
+    width: 28vh;
+    height: 24vh;
+    object-fit: cover;
+  }
+  .swiper-horizontal > .swiper-pagination-bullets,
+  .swiper-pagination-bullets.swiper-pagination-horizontal,
+  .swiper-pagination-custom,
+  .swiper-pagination-fraction {
+    bottom: 10px;
+    left: 0;
+    width: 0;
+  }
+  /* PCのみイベント情報 */
+  .event-info .event-info-item {
+    display: flex;
+    align-items: center;
+  }
+  .event-info .event-info-link img {
+    width: 16px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+  }
+  .event-info .event-info-link {
+    font-size: 14px;
+  }
+  .event-info .event-info-item dt {
+    flex-shrink: 0;
+    width: 90px;
+    color: grey;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+  .event-info .event-info-item dd {
+    font-size: 0.9rem;
+  }
+  .event-info .btn {
+    width: 100%;
+    white-space: nowrap;
+    padding: 0.8rem 1rem;
+  }
+  /* TOP 参加者一覧 */
+  .user-info img {
+    width: 20px;
+    height: 20px;
   }
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+@media (max-height: 700px) {
+  .balloon {
+    display: none;
+  }
 }
