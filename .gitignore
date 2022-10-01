@@ -27,9 +27,6 @@ dist-ssr
 .env.production
 
 # firebase
-storage.rules
-firestore.rules
-firestore.indexes.jsons
 .firebaserc
 .eslintrc.cjs
 .firebase/
