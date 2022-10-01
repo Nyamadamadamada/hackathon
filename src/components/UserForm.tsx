@@ -1,11 +1,9 @@
-import { useEffect, useState, Dispatch, SetStateAction } from "react";
+import React, { useEffect, useState, Dispatch, SetStateAction } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { serverTimestamp } from "firebase/firestore";
 
 import ImageUpload from "./common/ImageUpload";
-import { Checkbox } from "./common/FormItems";
+import { Checkbox } from "./common/Checkbox";
 import { fileSizeLimit, tagsKeys, tags } from "../config/common";
-import { UserStruct } from "../types/firestore";
 import {
   getUser,
   createUser,
@@ -45,22 +43,22 @@ const UserForm = ({ id, setIsShow }: Props) => {
       updateUser(id, data)
         .then(() => {
           uploadFile(id, data.file);
+          alert(data.name + "さんの情報を更新しました");
         })
         .catch((error) => {
           alert(error.message);
           setIsShow(false);
         });
-      alert(data.name + "さんの情報を更新しました");
     } else {
       createUser(data)
         .then((userId) => {
           uploadFile(userId, data.file);
+          alert(data.name + "さんを新規追加しました");
         })
         .catch((error) => {
           alert(error.message);
           setIsShow(false);
         });
-      alert(data.name + "さんを新規追加しました");
     }
     // モーダルをどじる
     setIsShow(false);
@@ -80,7 +78,7 @@ const UserForm = ({ id, setIsShow }: Props) => {
       return;
     }
     if (e.target.files[0].size > fileSizeLimit) {
-      alert("ファイルサイズは1MB以下にしてください");
+      alert("ファイルサイズは5MB以下にしてください");
       setSelectedFile(null);
       return;
     }
@@ -162,6 +160,7 @@ const UserForm = ({ id, setIsShow }: Props) => {
             className={`${
               errors.comment && "is-invalid"
             } form-control textarea`}
+            placeholder="ほげほげフガフガ"
             {...register("comment", { required: false, maxLength: 200 })}
           />
           <div className="invalid-feedback">
@@ -170,9 +169,6 @@ const UserForm = ({ id, setIsShow }: Props) => {
             )}
           </div>
         </div>
-        <p className="mt-2">
-          ※アイコンが未設定の場合、ランダムで画像が入ります。
-        </p>
       </div>
 
       <div className="modal-footer justify-content-between">

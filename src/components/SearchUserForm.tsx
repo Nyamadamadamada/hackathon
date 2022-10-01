@@ -1,6 +1,6 @@
-const SearchForm = () => {
+const SearchUserForm = () => {
   return (
-    <div>
+    <form>
       <div className="row g-3 align-items-center">
         <div className="col-4">
           <label className="col-form-label">キーワード</label>
@@ -36,16 +36,11 @@ const SearchForm = () => {
       </div>
 
       <hr className="mb-4" />
-      <button
-        type="button"
-        className="btn btn-secondary btn-lg fw-bold fs-6"
-        data-bs-toggle="modal"
-        data-bs-target="#staticBackdrop"
-      >
+      <button type="button" className="btn btn-secondary btn-lg fw-bold fs-6">
         絞り込む
       </button>
-    </div>
+    </form>
   );
 };
 
-export default SearchForm;
+export default SearchUserForm;

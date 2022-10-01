@@ -1,28 +1,18 @@
-import { useState, useEffect, useRef } from "react";
-import { db } from "../firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { useState } from "react";
 import Modal from "../components/common/Modal";
 import tagIcon from "../assets/tag.svg";
 import UserForm from "../components/UserForm";
-import { getUsers } from "../service/serviceUser";
-import { UserStruct, TagStruct } from "../types/firestore";
-import SearchForm from "../components/SearchForm";
+import SearchUserForm from "../components/SearchUserForm";
+import CreateUserForm from "../components/CreateUserForm";
 import { Link } from "react-router-dom";
 
 function UserList() {
-  const [users, setUsers] = useState<UserStruct[]>([]);
   const [userId, setUserId] = useState<string>("");
   const [isShow, setIsShow] = useState<boolean>(false);
   const handleOpenModal = (id: string) => {
     setUserId(id);
     setIsShow(true);
   };
-
-  useEffect(() => {
-    getUsers().then((users) => {
-      // ユーザー情報を入れる
-    });
-  }, []);
 
   return (
     <div className="UserList">
@@ -32,8 +22,8 @@ function UserList() {
             ※このページをReactとFirebaseをつかって動的なサイトにします
           </h1>
           <h3 className="fw-bold">参加者一覧</h3>
-          <div className="row d-flex flex-column-reverse flex-lg-row">
-            <div className="col-12 col-lg-8">
+          <div className="row d-flex flex-column-reverse flex-xl-row">
+            <div className="col-12 col-xl-8">
               <div className="content-info">
                 <div className="content-info-item">
                   登録者人数の合計：１０人
@@ -99,7 +89,7 @@ function UserList() {
                   <div className="col-md-8">
                     <div className="card-body">
                       <h5 className="card-title">なまえ２</h5>
-                      <p className="card-text">短いコメント</p>
+                      <p className="card-text">短いコメント。自己紹介など</p>
 
                       <div className="card-text text-muted interest-tag">
                         <ul className="d-flex">
@@ -135,16 +125,24 @@ function UserList() {
                 <Link to="/">トップページに戻る</Link>
               </p>
             </div>
-            <div className="col-12 col-lg-4 d-lg-block my-5">
+            <div className="col-12 col-xl-4 d-xl-block my-5">
               <h4 className="fw-bold">絞り込み</h4>
               <div className="card search-user">
                 <div className="card-body">
-                  <SearchForm />
+                  <SearchUserForm />
+                </div>
+              </div>
+              <div className="mt-4">
+                <h4 className="fw-bold">新規追加</h4>
+                <div className="card search-user">
+                  <div className="card-body">
+                    <CreateUserForm />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <footer className="pt-5 my-5 text-muted border-top">
+          <footer className="py-5 mt-5 text-muted border-top">
             Created by the Bootstrap and Hogehoge &middot; &copy; 2022
           </footer>
         </div>

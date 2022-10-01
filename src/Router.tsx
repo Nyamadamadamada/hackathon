@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import App from "./page/App";
+import Home from "./page/Home";
 import UserList from "./page/UserList";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Home />,
   },
   {
     path: "user-list",

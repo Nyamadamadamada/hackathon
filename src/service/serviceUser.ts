@@ -11,13 +11,11 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 import { db, storage } from "../firebase";
 import { userConverter } from "../types/converter";
-import { UserStruct, TagStruct, User } from "../types/firestore";
+import { UserStruct, TagStruct } from "../types/firestore";
 import { Inputs } from "../components/UserForm";
 import { tags, tagsKeys } from "../config/common";
 
 export const getUser = async (id: string): Promise<Inputs> => {
-  console.log("id");
-  console.log(id);
   const userRef = doc(db, "users", id).withConverter(userConverter);
   const docSnap = await getDoc(userRef);
   if (docSnap.exists()) {
@@ -83,6 +81,7 @@ export const updateUser = async (id: string, data: Inputs) => {
   await updateDoc(userDocumentRef, collectionData);
 };
 
+// 参加者のアイコンを登録
 export const uploadUserIcon = (
   id: string,
   file: string,
@@ -91,17 +90,20 @@ export const uploadUserIcon = (
   if (!selectedFile || !file) {
     return;
   }
-  const filePath = `${id}/${file}`;
+
+  const filePath = id.concat("/", file);
   const storageRef = ref(storage, filePath);
-  uploadBytes(storageRef, selectedFile);
+  uploadBytes(storageRef, selectedFile).catch((error) => {
+    alert("ファイルアップロードに失敗しました。" + error.message);
+  });
 };
 
+// 参加者のアイコンを取得
 export const getUserIconPath = async (
   id: string,
   file: string
 ): Promise<string> => {
-  const filePath = `${id}/${file}`;
+  const filePath = id.concat("/", file);
   const url = await getDownloadURL(ref(storage, filePath));
-  console.log(url);
   return url;
 };
