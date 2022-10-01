@@ -60,6 +60,10 @@
   width: 100%;
   max-width: 300px;
 }
+.form-control.textarea::placeholder {
+  color: #222;
+  opacity: 0.5;
+}
 
 /* イベント内容 */
 .recomend ul,
@@ -78,10 +82,46 @@
   font-size: 14px;
 }
 /* TOPページ 参加者 */
+.user-info ul {
+  padding: 0 4px;
+}
 .user-info img {
   width: 40px;
   height: 40px;
   object-fit: cover;
+}
+.user-info .comment-icon {
+  position: relative;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin-left: 10px;
+}
+.comment-icon-wrap {
+  position: relative;
+  display: inline;
+}
+.balloon-wrap {
+  position: absolute;
+  top: -40px;
+  height: 0;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+.balloon {
+  position: relative;
+  padding: 7px 10px;
+  width: 200px;
+  color: #555;
+  font-size: 14px;
+  background: #e0edff;
+  border-radius: 5px;
+}
+
+.comment-icon-wrap:hover > .balloon-wrap {
+  height: 100%;
+  opacity: 1;
+  z-index: 30;
 }
 /* 参加者情報 */
 .content-info {
@@ -197,8 +237,14 @@
   }
   /* TOP 参加者一覧 */
   .user-info img {
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
+  }
+  .user-info .user-name {
+    margin: auto 0;
+  }
+  .user-info p {
+    margin: 0;
   }
 }
 

@@ -1,4 +1,4 @@
-export const fileSizeLimit = 1024 * 1024 * 1;
+export const fileSizeLimit = 1024 * 1024 * 5;
 
 export const tagsKeys = [
   "web",

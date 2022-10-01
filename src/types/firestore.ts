@@ -36,7 +36,6 @@ export type UserStruct = {
   tags: TagStruct[];
   comment: string;
   file: string;
-  filePath?: string;
   createAt?: FieldValue;
   updateAt: FieldValue;
   deleteAt?: FieldValue;

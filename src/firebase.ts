@@ -10,7 +10,9 @@ const firebaseConfig = {
   messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_APP_ID,
 };
-const isEmulating = window.location.hostname === "localhost";
+
+const regexp = /localhost|127.0.0.1/;
+const isEmulating = regexp.test(window.location.hostname);
 
 const app = initializeApp(firebaseConfig);
 
@@ -18,7 +20,7 @@ export const db = getFirestore(app);
 export const storage = getStorage(app);
 
 if (isEmulating) {
-  console.log("ローカル");
+  console.log("ローカル環境だよー");
   connectFirestoreEmulator(db, "localhost", 8080);
   connectStorageEmulator(storage, "localhost", 9199);
 }
