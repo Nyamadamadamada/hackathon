@@ -13,7 +13,7 @@ const ScheduleContents = ({ handleOpenModal }: Props) => {
           className="event-info-link"
           target="_blank"
           rel="noreferrer"
-          href="https://calendar.google.com/event?action=TEMPLATE&amp;tmeid=NmtvY3V2NTA0MXNqYWluNHJvcDhyY2ZlM2ggeWFtYWRhbWFkYW1hZGEuc3R1ZHlAbQ&amp;tmsrc=yamadamadamada.study%40gmail.com"
+          href="https://calendar.google.com/event?action=TEMPLATE&amp;tmeid=NGFpaWlvdG1xYmRvNGJwaGNiNm5uM3JsMmcgeWFtYWRhbWFkYW1hZGEuc3R1ZHlAbQ&amp;tmsrc=yamadamadamada.study%40gmail.com"
         >
           <img src={calenderIcon} alt="icon" />
           Googleカレンダー

@@ -158,6 +158,9 @@
   font-size: 14px;
 }
 
+.linethrough {
+  text-decoration: line-through;
+}
 @keyframes fadeIn {
   0% {
     opacity: 0;
