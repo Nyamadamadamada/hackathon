@@ -23,18 +23,19 @@ const MainContents = ({ handleOpenModal }: Props) => {
           <h2 className="h2-ttl">日時・場所</h2>
           <p>2022年10月2日（日）11時〜15時</p>
           <p>
-            Google Meet で実施します。
+            <span className="linethrough">Google Meet </span>
+            <span>Zoom</span> で実施します。
             <br />
             以下のURLから簡単に参加できます。
           </p>
           <p>
             ビデオ通話のリンク:
             <a
-              href="https://meet.google.com/ocq-qzsm-sat"
+              href="https://us05web.zoom.us/j/86255788282"
               target="_blank"
               rel="noreferrer"
             >
-              https://meet.google.com/ocq-qzsm-sat
+              https://us05web.zoom.us/j/86255788282
             </a>
           </p>
           <p>※5分前から入室可能です。</p>
