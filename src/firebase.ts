@@ -21,6 +21,6 @@ export const storage = getStorage(app);
 
 if (isEmulating) {
   console.log("ローカル環境だよー");
-  connectFirestoreEmulator(db, "localhost", 8080);
+  connectFirestoreEmulator(db, "localhost", 8081);
   connectStorageEmulator(storage, "localhost", 9199);
 }
