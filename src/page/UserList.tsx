@@ -12,6 +12,7 @@ import { db } from "../firebase";
 
 function UserList() {
   // 演習1-1-1 usersのstateを作成
+  const [users, setUsers] = useState<any[]>([]);
   const [userId, setUserId] = useState<string>("");
   const [isShow, setIsShow] = useState<boolean>(false);
   const handleOpenModal = (id: string) => {
@@ -22,6 +23,14 @@ function UserList() {
   useEffect(() => {
     // 演習1-1-1 Firebaseからデータを呼び出す
     // 演習1-1-1 firestoreからのデータをusersへ格納
+    (async () => {
+      const querySnapshot = await getDocs(collection(db, "users"));
+      const tmpUsers: any[] = [];
+      querySnapshot.docs.forEach((doc) => {
+        tmpUsers.push({ id: doc.id, ...doc.data() });
+      });
+      setUsers(tmpUsers);
+    })();
   }, []);
 
   return (
@@ -37,7 +46,7 @@ function UserList() {
               <div className="content-info">
                 <div className="content-info-item">
                   {/* 演習1-1 */}
-                  登録者人数の合計：１０人
+                  登録者人数の合計：{users.length}人
                 </div>
                 <div className="content-sort">
                   <div>並び順：</div>
@@ -52,85 +61,50 @@ function UserList() {
               </div>
               <div className="card mb-3">
                 {/* 演習1-1-2 ここから */}
-                <div className="row g-0">
-                  <div className="col-md-4">
-                    <img src="/img/dummy1.png" className="w-100" />
-                  </div>
-                  <div className="col-md-8">
-                    <div className="card-body">
-                      {/* 演習1-1 */}
-                      <h5 className="card-title">なまえ</h5>
-                      <p className="card-text">
-                        This is a wider card with supporting text below as a
-                        natural lead-in to additional content. This content is a
-                        little bit longer.
-                      </p>
+                {users.map((user, index) => (
+                  <div className="row g-0" key={index}>
+                    <div className="col-md-4">
+                      <img src="/img/dummy1.png" className="w-100" />
+                    </div>
+                    <div className="col-md-8">
+                      <div className="card-body">
+                        {/* 演習1-1 */}
+                        <h5 className="card-title">{user.name}</h5>
+                        <p className="card-text">{user.comment}</p>
 
-                      <div className="card-text text-muted interest-tag">
-                        <ul className="d-flex">
-                          <li>
-                            <img src={tagIcon} alt="icon" />
-                          </li>
-                          {/* 演習1-1 */}
-                          <li>フロント,</li>
-                          <li>AI</li>
-                        </ul>
-                      </div>
-                      <div className="">
-                        <button
-                          type="button"
-                          className="btn btn-primary fw-bold fs-6 me-2"
-                          onClick={() => handleOpenModal("<user.idをいれてね>")}
-                        >
-                          編集
-                        </button>
-                        <button
-                          type="button"
-                          className="btn btn-secondary fw-bold fs-6 me-2"
-                        >
-                          削除
-                        </button>
+                        <div className="card-text text-muted interest-tag">
+                          <ul className="d-flex">
+                            <li>
+                              <img src={tagIcon} alt="icon" />
+                            </li>
+                            {/* 演習1-1 */}
+                            {user.tags &&
+                              user.tags.map((tag, index) => (
+                                <li key={index}>{tag.label}</li>
+                              ))}
+                          </ul>
+                        </div>
+                        <div className="">
+                          <button
+                            type="button"
+                            className="btn btn-primary fw-bold fs-6 me-2"
+                            onClick={() => handleOpenModal(user.id)}
+                          >
+                            編集
+                          </button>
+                          <button
+                            type="button"
+                            className="btn btn-secondary fw-bold fs-6 me-2"
+                          >
+                            削除
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                ))}
+
                 {/* 演習1-1-2 ここまでがUserListItemへ移せる */}
-                <div className="row g-0">
-                  <div className="col-md-4">
-                    <img src="/img/dummy2.png" className="w-100" />
-                  </div>
-                  <div className="col-md-8">
-                    <div className="card-body">
-                      <h5 className="card-title">なまえ２</h5>
-                      <p className="card-text">短いコメント。自己紹介など</p>
-
-                      <div className="card-text text-muted interest-tag">
-                        <ul className="d-flex">
-                          <li>
-                            <img src={tagIcon} alt="icon" />
-                          </li>
-                          <li>フロント,</li>
-                          <li>AI</li>
-                        </ul>
-                      </div>
-                      <div className="">
-                        <button
-                          type="button"
-                          className="btn btn-primary fw-bold fs-6 me-2"
-                          onClick={() => handleOpenModal("<user.idをいれてね>")}
-                        >
-                          編集
-                        </button>
-                        <button
-                          type="button"
-                          className="btn btn-secondary fw-bold fs-6 me-2"
-                        >
-                          削除
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
               <p className="h4">
                 <Link to="/">トップページに戻る</Link>
