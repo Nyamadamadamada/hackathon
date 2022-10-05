@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import Modal from "../components/common/Modal";
-import tagIcon from "../assets/tag.svg";
 import UserForm from "../components/UserForm";
 import SearchUserForm from "../components/SearchUserForm";
 import CreateUserForm from "../components/CreateUserForm";
 import UserListItem from "../components/UserListItem";
 import { Link } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
-import { UserStruct } from "../types/firestore";
 import { db } from "../firebase";
 
 function UserList() {
@@ -62,46 +60,11 @@ function UserList() {
               <div className="card mb-3">
                 {/* 演習1-1-2 ここから */}
                 {users.map((user, index) => (
-                  <div className="row g-0" key={index}>
-                    <div className="col-md-4">
-                      <img src="/img/dummy1.png" className="w-100" />
-                    </div>
-                    <div className="col-md-8">
-                      <div className="card-body">
-                        {/* 演習1-1 */}
-                        <h5 className="card-title">{user.name}</h5>
-                        <p className="card-text">{user.comment}</p>
-
-                        <div className="card-text text-muted interest-tag">
-                          <ul className="d-flex">
-                            <li>
-                              <img src={tagIcon} alt="icon" />
-                            </li>
-                            {/* 演習1-1 */}
-                            {user.tags &&
-                              user.tags.map((tag, index) => (
-                                <li key={index}>{tag.label}</li>
-                              ))}
-                          </ul>
-                        </div>
-                        <div className="">
-                          <button
-                            type="button"
-                            className="btn btn-primary fw-bold fs-6 me-2"
-                            onClick={() => handleOpenModal(user.id)}
-                          >
-                            編集
-                          </button>
-                          <button
-                            type="button"
-                            className="btn btn-secondary fw-bold fs-6 me-2"
-                          >
-                            削除
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <UserListItem
+                    user={user}
+                    handleOpenModal={handleOpenModal}
+                    key={index}
+                  />
                 ))}
 
                 {/* 演習1-1-2 ここまでがUserListItemへ移せる */}
