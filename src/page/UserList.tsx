@@ -6,6 +6,9 @@ import SearchUserForm from "../components/SearchUserForm";
 import CreateUserForm from "../components/CreateUserForm";
 import UserListItem from "../components/UserListItem";
 import { Link } from "react-router-dom";
+import { collection, getDocs } from "firebase/firestore";
+import { UserStruct } from "../types/firestore";
+import { db } from "../firebase";
 
 function UserList() {
   // 演習1-1-1 usersのstateを作成
