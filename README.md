@@ -1,6 +1,5 @@
-# React_Firebase
-
-React✖️Firebase の環境
+# hackathon
+Qiitaハッカソン用
 
 ## 事前準備
 
@@ -31,3 +30,4 @@ React✖️Firebase の環境
 
 参考
 [React×Firebase でちゃんと開発するときの環境構築手順と解説](https://zenn.dev/tentel/articles/488dd8765fb059#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB)
+
