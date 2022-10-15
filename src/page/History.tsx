@@ -1,14 +1,12 @@
 import Menu from "../components/common/Menu";
 import DemoSVG from "../assets/top/demo.svg";
 
-function Favorite() {
+function History() {
   return (
-    <div className="Favorite h-screen">
+    <div className="History h-screen">
       <main className="h-[calc(100vh_-_4rem)]">
         <div className="py-8 text-center">
-          <h1 className="text-lg font-bold text-gray-900">
-            ゲストさんのお気に入り
-          </h1>
+          <h1 className="text-lg font-bold text-gray-900">診断結果の履歴</h1>
         </div>
         <div className="w-[94%] mx-auto">
           <ul className="flex mx-auto text-sm font-bold text-center bg-gray-100 text-gray-500 rounded-lg overflow-hidden divide-x divide-gray-200 shadow">
@@ -73,4 +71,4 @@ function Favorite() {
   );
 }
 
-export default Favorite;
+export default History;

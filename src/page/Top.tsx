@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 import DemoSVG from "../assets/top/demo.svg";
+import Menu from "../components/common/Menu";
 
 function Top() {
   return (
@@ -10,26 +11,19 @@ function Top() {
           <div className="">
             <div className="d-flex flex-column">
               <p className="fadeIn text-3xl font-bold underline">
-                キャッチーなサイトの言葉
+                TOP画面
                 <br />
-                画像にしてください
+                健康診断書をアップしてください
               </p>
             </div>
           </div>
           <div className="fadeIn delay-1">
             <img src={DemoSVG} />
           </div>
-          <div className="w-full">
-            <Link to="info">
-              <div className="text-center w-full h-1/6 inline-flex justify-center items-end pb-8">
-                <div className="w-5/6 bg-green-700 text-white px-5 py-3">
-                  はじめてみましょう
-                </div>
-              </div>
-            </Link>
-          </div>
+          <div className="w-full">結果</div>
         </div>
       </main>
+      <Menu />
     </div>
   );
 }

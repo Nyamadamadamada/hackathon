@@ -49,9 +49,9 @@ function Info() {
             </SwiperSlide>
           </Swiper>
           <div className="mx-auto h-1/6 w-5/6 pb-8 flex justify-center items-end">
-            <Link to="/info" className="w-full">
+            <Link to="/" className="w-full">
               <div className="w-full bg-green-700 text-white px-5 py-3 text-center h-full whitespace-nowrap">
-                メインコンテンツへGO
+                さぁ、健康になりましょう
               </div>
             </Link>
           </div>

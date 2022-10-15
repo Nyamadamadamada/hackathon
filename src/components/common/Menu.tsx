@@ -2,22 +2,20 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import BeginnerSVG from "../../assets/menu/beginner.svg";
-import FavoriteSVG from "../../assets/menu/favorite.svg";
+import HistorySVG from "../../assets/menu/favorite.svg";
+import MainSVG from "../../assets/menu/main.svg";
 
 const Menu = () => {
   const [path, setPath] = useState<string>("");
   const { pathname } = useLocation();
   const isInfo = () => {
-    // TODO: ルートが決まり次第名前を変更
     return path === "/info";
   };
-  const isDummy = () => {
-    // TODO: ルートが決まり次第名前を変更
+  const isMain = () => {
     return path === "/";
   };
-  const isFavorite = () => {
-    // TODO: ルートが決まり次第名前を変更
-    return path === "/favorite";
+  const isHistory = () => {
+    return path === "/history";
   };
 
   useEffect(() => {
@@ -44,22 +42,22 @@ const Menu = () => {
         >
           <div className="">
             <img
-              src={BeginnerSVG}
-              className={isDummy() ? "h-7 m-auto" : "h-5 m-auto"}
+              src={MainSVG}
+              className={isMain() ? "h-7 m-auto" : "h-5 m-auto"}
             />
-            <p className="text-white font-bold text-xs">メインコンテンツ</p>
+            <p className="text-white font-bold text-xs mt-1">TOP</p>
           </div>
         </Link>
         <Link
-          to="/favorite"
+          to="/history"
           className="py-2 inline-flex items-center justify-center text-center w-1/3"
         >
           <div className="">
             <img
-              src={FavoriteSVG}
-              className={isFavorite() ? "h-7 m-auto" : "h-5 m-auto"}
+              src={HistorySVG}
+              className={isHistory() ? "h-7 m-auto" : "h-5 m-auto"}
             />
-            <p className="text-white font-bold text-xs">お気に入り</p>
+            <p className="text-white font-bold text-xs">履歴</p>
           </div>
         </Link>
       </div>

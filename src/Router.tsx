@@ -2,7 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 
 import Top from "./page/Top";
 import Info from "./page/Info";
-import Favorite from "./page/Favorite";
+import History from "./page/History";
+import Detail from "./page/Detail";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -13,8 +14,21 @@ const router = createBrowserRouter([
     element: <Info />,
   },
   {
-    path: "favorite",
-    element: <Favorite />,
+    path: "history",
+    element: <History />,
+  },
+  {
+    path: "detail/:itemId",
+    element: <Detail />,
+  },
+  {
+    path: "*",
+    element: (
+      <div>
+        <p>ページが見つかりません</p>
+        <p>404</p>
+      </div>
+    ),
   },
 ]);
 
