@@ -1,15 +1,20 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import Home from "./page/Home";
-import UserList from "./page/UserList";
+import Top from "./page/Top";
+import Info from "./page/Info";
+import Favorite from "./page/Favorite";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <Top />,
   },
   {
-    path: "user-list",
-    element: <UserList />,
+    path: "info",
+    element: <Info />,
+  },
+  {
+    path: "favorite",
+    element: <Favorite />,
   },
 ]);
 

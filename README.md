@@ -1,5 +1,6 @@
 # hackathon
-Qiitaハッカソン用
+
+Qiita ハッカソン用
 
 ## 事前準備
 
@@ -21,6 +22,12 @@ Qiitaハッカソン用
 2. `cd react_firebase` でルートディレクトリに移動
 3. `make setup`で環境構築
 
+## 開発時
+
+1. ターミナルを開き`make start`
+2. 別ターミナルを開き`make emulators`
+   エミュレータを起動するには Firebase プロジェクトが必要
+
 ## デプロイする場合
 
 4. FIrebase 環境を設定
@@ -30,4 +37,3 @@ Qiitaハッカソン用
 
 参考
 [React×Firebase でちゃんと開発するときの環境構築手順と解説](https://zenn.dev/tentel/articles/488dd8765fb059#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB)
-

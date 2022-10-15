@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 :root {
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -10,13 +13,7 @@
 }
 
 a {
-  font-weight: 500;
-  color: #0e7ac4;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #0e7ac4;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 body {
@@ -32,7 +29,7 @@ body {
   color: #333;
   line-height: 1.6;
   word-wrap: break-word;
-  background-color: #faf8f7;
+  background-color: #f5f4e4;
 }
 
 h1 {
@@ -41,14 +38,8 @@ h1 {
 }
 
 button {
-  border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
@@ -59,17 +50,8 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #0e7ac4;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+img {
+  width: 100%;
 }
 
 dd {
