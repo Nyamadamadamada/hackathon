@@ -22,7 +22,7 @@ const Menu = () => {
     setPath(pathname);
   }, [pathname]);
   return (
-    <div className="bg-green-700 w-full fixed bottom-0 h-16">
+    <div className="bg-green-700 w-full fixed bottom-0 h-16 items-center">
       <div className="flex h-full divide-x-4 divide-gray-200/50">
         <Link
           to="/info"

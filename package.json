@@ -18,7 +18,8 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.35.0",
     "react-router-dom": "^6.4.0",
-    "swiper": "^8.4.3"
+    "swiper": "^8.4.3",
+    "tesseract.js": "^3.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.19.1",
