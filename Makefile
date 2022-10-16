@@ -16,7 +16,7 @@ setup:
 deploy:
 	@make lint
 	npm run build
-	firebase deploy --only hosting,storage,firestore
+	firebase deploy --only hosting
 
 emulators:
-	firebase emulators:start --only hosting,storage,firestore
+	firebase emulators:start --only hosting

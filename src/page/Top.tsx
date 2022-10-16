@@ -8,7 +8,7 @@ function Top() {
     <div className="Top">
       <div>
         <div className="font-bold p-2 text-xl">
-          <span className="block">健診</span>
+          <span className="block leading-4">健診</span>
           <span>その後くん</span>
         </div>
       </div>

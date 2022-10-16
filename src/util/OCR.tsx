@@ -1,9 +1,98 @@
 // モジュールのインストールが必要
 //npm install --save tesseract.js
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { createWorker } from "tesseract.js";
+import { UserData } from "../App";
 import ResultOcr from "../components/common/ResultOcr";
+// 抽出対象の検査項目(めちゃくちゃハードコーディング)
+const elements = [
+  {
+    en: "HDL-cholesterol",
+    ja: "HDLコレステロール",
+    unit: "mg/dl",
+    standard: "40以上",
+  },
+  {
+    en: "LDL-cholesteroll",
+    ja: "LDLコレステロール",
+    unit: "mg/dl",
+    standard: "70〜139",
+  },
+  {
+    en: "Neutral-fat",
+    ja: "中性脂肪",
+    unit: "mg/dl",
+    standard: "50〜150",
+  },
+
+  {
+    en: "GOT",
+    ja: "アスパラギン酸アミノ基転移酵素",
+    unit: "IU/L",
+    standard: "8〜38",
+  },
+  {
+    en: "GPT",
+    ja: "アラニンアミノ基転移酵素",
+    unit: "IU/L",
+    standard: "4〜44",
+  },
+  {
+    en: "y-GTP",
+    ja: "γ-グルタミルトランスフェラーゼ",
+    unit: "IU/L",
+    standard: "16〜73",
+  },
+  {
+    en: "Blood-glucose-level",
+    ja: "血糖値",
+    unit: "mg/dl",
+    standard: "70〜110",
+  },
+  {
+    en: "HbA1c",
+    ja: "グリコヘモグロビン",
+    unit: "%",
+    standard: "4.2〜6.2",
+  },
+  {
+    en: "Red-blood-cell",
+    ja: "赤血球",
+    unit: "X10^4/mm3",
+    standard: "420〜530",
+  },
+  {
+    en: "Mcv",
+    ja: "平均赤血球容積",
+    unit: "μ3",
+    standard: "86〜96",
+  },
+  {
+    en: "MCH",
+    ja: "平均赤血球ヘモグロビン量",
+    unit: "pg",
+    standard: "28〜34",
+  },
+  {
+    en: "MCHC",
+    ja: "平均赤血球ヘモグロビン濃度",
+    unit: "%",
+    standard: "31〜36",
+  },
+  {
+    en: "White-blood-cells",
+    ja: "白血球",
+    unit: "/μl",
+    standard: "4000〜8500",
+  },
+  {
+    en: "Uric-acid-level",
+    ja: "尿酸",
+    unit: "mg/dL",
+    standard: "3〜7",
+  },
+];
 
 const Reading = () => {
   return (
@@ -28,12 +117,20 @@ const Reading = () => {
   );
 };
 
+export interface Item {
+  name: string;
+  value: string;
+  unit: string;
+  standard: string;
+  isRed: boolean;
+}
+
 const OCR = () => {
   console.log("this is ocr");
+  const { item, setItem } = useContext(UserData);
 
-  const [file, setFile] = useState();
-  const [textOcr, setTextOcr] = useState("");
-  const [data, setData] = useState([]);
+  const [file, setFile] = useState<any>();
+  // const [data, setData] = useState<Item[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const worker = createWorker({
@@ -47,48 +144,36 @@ const OCR = () => {
     const {
       data: { text },
     } = await worker.recognize(file);
-    setTextOcr(text);
     await worker.terminate();
 
     // OCR結果の解析、必要データ抽出
     const lines = text.split(/\n/);
-    // console.log(lines);
 
-    // 抽出対象の検査項目(めちゃくちゃハードコーディング)
-    const elements = [
-      "HDL-cholesterol",
-      "LDL-cholesterol",
-      "Neutral-fat",
-      "GOT",
-      "GPT",
-      "y-GTP",
-      "Blood-glucose-level",
-      "HbA1c",
-      "Red-blood-cell",
-      "Mcv",
-      "MCH",
-      "MCHC",
-      "White-blood-cells",
-      "Uric-acid-level",
-    ];
-
-    const tmpData = [];
+    const tmpData: Item[] = [];
 
     lines.forEach((line) => {
       const words = line.split(" ");
-      if (elements.includes(words[0])) {
+      const matchWord = elements.find((item) => {
+        return item.en === words[0];
+      });
+      if (typeof matchWord !== "undefined") {
         console.log(words[0] + " ： " + words[1]);
-        tmpData.push({ name: words[0], value: words[1] });
+        tmpData.push({
+          name: matchWord.ja,
+          value: words[1],
+          unit: matchWord.unit,
+          standard: matchWord.standard,
+          isRed: matchWord.ja === "尿酸",
+        });
       }
     });
     console.log(tmpData);
-    setData(tmpData);
-    console.log(data);
+    setItem(tmpData);
     setIsLoading(false);
   };
 
   // fileData 取得
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     console.log("file data 取得");
     console.log(e.target.files[0]);
     setFile(e.target.files[0]);
@@ -97,7 +182,6 @@ const OCR = () => {
   const handleClick = async () => {
     console.log("handleClick here!"); // deb
     if (!file) return;
-    setTextOcr("Recognizing...");
     setIsLoading(true);
     await tryOcr();
   };
@@ -120,7 +204,7 @@ const OCR = () => {
         </button>
       </div>
       {isLoading && <Reading />}
-      {data.length > 0 && !isLoading && <ResultOcr data={data} />}
+      {item.length > 0 && !isLoading && <ResultOcr />}
     </div>
   );
 };

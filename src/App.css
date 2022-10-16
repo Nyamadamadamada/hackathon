@@ -32,3 +32,51 @@
     transform: translateY(0px);
   }
 }
+/*ベース*/
+.toggle {
+  display: none;
+}
+.Label {
+  /*タイトル*/
+  border: 1px solid rgb(114, 114, 114);
+  padding: 1em;
+  display: block;
+  background: #fff;
+}
+.Label::before {
+  /*タイトル横の矢印*/
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  -webkit-transform: rotate(45deg);
+  position: absolute;
+  top: calc(50% - 3px);
+  right: 20px;
+  transform: rotate(135deg);
+}
+.Label,
+.content {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  transition: all 0.3s;
+}
+
+.content {
+  /*本文*/
+  height: 0;
+  margin-bottom: 10px;
+  padding: 0 20px;
+  overflow: hidden;
+}
+.toggle:checked + .Label + .content {
+  /*開閉時*/
+  height: auto;
+  padding: 20px;
+  transition: all 0.3s;
+}
+.toggle:checked + .Label::before {
+  transform: rotate(-45deg) !important;
+}

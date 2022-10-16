@@ -4,23 +4,32 @@ import Top from "./page/Top";
 import Info from "./page/Info";
 import History from "./page/History";
 import Detail from "./page/Detail";
+import App from "./App";
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Top />,
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <Top />,
+      },
+      {
+        path: "info",
+        element: <Info />,
+      },
+      {
+        path: "history",
+        element: <History />,
+      },
+      {
+        path: "detail/:itemId",
+        element: <Detail />,
+      },
+    ],
   },
-  {
-    path: "info",
-    element: <Info />,
-  },
-  {
-    path: "history",
-    element: <History />,
-  },
-  {
-    path: "detail/:itemId",
-    element: <Detail />,
-  },
+
   {
     path: "*",
     element: (
