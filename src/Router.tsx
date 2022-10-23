@@ -5,6 +5,7 @@ import Info from "./page/Info";
 import History from "./page/History";
 import Detail from "./page/Detail";
 import App from "./App";
+import SafeDetail from "./page/SafeDetail";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "detail/:itemId",
         element: <Detail />,
+      },
+      {
+        path: "detail/ok/:itemId",
+        element: <SafeDetail />,
       },
     ],
   },

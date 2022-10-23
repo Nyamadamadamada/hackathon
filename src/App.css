@@ -3,12 +3,95 @@
   height: 100vw;
 }
 
+/* 検査モーダル */
+.diagnoseModal {
+  overflow: auto;
+  scroll-snap-type: y mandatory;
+  height: 50vh;
+  position: absolute;
+  bottom: 0;
+}
+
+.diagnoseModal-area {
+  scroll-snap-align: end;
+  width: 100vw;
+  height: 50vh;
+}
+.inline-radio {
+  display: flex;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid #b6b6b6;
+}
+
+.radio-wrap {
+  position: relative;
+  flex: 1;
+}
+
+input[type="radio"] {
+  width: 100%;
+  height: 40px;
+  opacity: 0;
+}
+
+label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  border-right: 1px solid #b6b6b6;
+}
+
+.radio-wrap:last-child label {
+  border-right: 0;
+}
+
+input:checked + label {
+  background-color: rgb(249 115 22);
+  font-weight: 500;
+  color: #fff;
+}
+
+/* 検査モーダル終わり */
+.fadeOpen {
+  -webkit-animation-name: fadeOpen;
+  animation-name: fadeOpen;
+  opacity: 0;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+.fadeClose {
+  -webkit-animation-name: fadeClose;
+  animation-name: fadeClose;
+  opacity: 0;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
 .fadeIn {
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
   opacity: 0;
-  animation-duration: 0.5s;
-  animation-timing-function: ease-out;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+.fadeInSmall {
+  -webkit-animation-name: fadeInSmall;
+  animation-name: fadeInSmall;
+  opacity: 0;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in;
   animation-fill-mode: forwards;
 }
 
@@ -21,6 +104,30 @@
 .delay-3 {
   animation-delay: 0.5s;
 }
+.delay-4 {
+  animation-delay: 1s;
+}
+
+@keyframes fadeOpen {
+  0% {
+    opacity: 0;
+    transform: translateY(64px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+@keyframes fadeClose {
+  0% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(64px);
+  }
+}
 
 @keyframes fadeIn {
   0% {
@@ -30,6 +137,31 @@
   100% {
     opacity: 1;
     transform: translateY(0px);
+  }
+}
+@keyframes fadeInSmall {
+  0% {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.zoomIn {
+  animation: zoomin 0.2s ease-in forwards;
+}
+
+@keyframes zoomin {
+  0% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 /*ベース*/

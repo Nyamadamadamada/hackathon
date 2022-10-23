@@ -47,15 +47,17 @@ const ResultOcr = () => {
               {item.map((data, index) => {
                 return (
                   <li className="my-2" key={index}>
-                    <p
-                      className={
-                        data.isRed
-                          ? "text-red-600 text-left text-base"
-                          : "text-gray-900 text-left text-base"
-                      }
-                    >
-                      {data.name}
-                    </p>
+                    <Link to={"/detail/ok/HTC"}>
+                      <p
+                        className={
+                          data.isRed
+                            ? "text-red-600 text-left text-base"
+                            : "text-blue-800 text-left text-base"
+                        }
+                      >
+                        {data.name}
+                      </p>
+                    </Link>
                     <table className="w-full my-1">
                       <tr>
                         <th className="w-1/2">あなたの数値</th>

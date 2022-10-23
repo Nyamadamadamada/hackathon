@@ -1,24 +1,45 @@
-export const nyosan = {
-  name: "尿酸",
-  range: [
-    [
+import { ItemType } from ".";
+
+export const NEUTRAL_FAT: ItemType = {
+  name: "中性脂肪",
+  description: "",
+  unit: "mg/dl",
+  range: {
+    man: [
       {
-        min: 0,
-        max: 2,
-        isRed: true,
+        min: null,
+        max: 3,
+        status: "green",
       },
       {
         min: 3,
         max: 7,
-        isRed: false,
+        status: "red",
       },
       {
-        min: 8,
-        max: 99999,
-        isRed: true,
+        min: 7,
+        max: null,
+        status: "green",
       },
     ],
-  ],
+    woman: [
+      {
+        min: null,
+        max: 3,
+        status: "green",
+      },
+      {
+        min: 3,
+        max: 7,
+        status: "red",
+      },
+      {
+        min: 7,
+        max: null,
+        status: "green",
+      },
+    ],
+  },
   ill: [
     {
       name: "通風",
